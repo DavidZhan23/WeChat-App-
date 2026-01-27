@@ -1,0 +1,60 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-section card">
+    <view class="user-header">
+      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-details">
+        <text class="nickname">{{userInfo.nickname || '用户'}}</text>
+        <text class="department">{{userInfo.department || ''}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-section card">
+    <view class="section-title">累计统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalSteps}}</text>
+        <text class="stat-label">总步数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalDistance}}</text>
+        <text class="stat-label">总里程(公里)</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalDays}}</text>
+        <text class="stat-label">参与天数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.avgSteps}}</text>
+        <text class="stat-label">日均步数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="syncSteps">
+      <text class="menu-icon">🔄</text>
+      <text class="menu-text">同步步数</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <text class="menu-icon">📊</text>
+      <text class="menu-text">历史记录</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item">
+      <text class="menu-icon">ℹ️</text>
+      <text class="menu-text">关于我们</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="logout">
+      <text class="menu-icon">🚪</text>
+      <text class="menu-text">退出登录</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+</view>

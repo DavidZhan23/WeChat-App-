@@ -1,0 +1,47 @@
+<!--pages/ranking/ranking.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">处室排行榜</text>
+    <text class="subtitle">按总步数排名</text>
+  </view>
+
+  <!-- 排行榜列表 -->
+  <view class="ranking-list">
+    <view class="ranking-item {{index < 3 ? 'top-three' : ''}}" wx:for="{{ranking}}" wx:key="department">
+      <view class="rank-number">
+        <text class="rank-text" wx:if="{{index >= 3}}">{{index + 1}}</text>
+        <image class="medal" wx:if="{{index === 0}}" src="/images/medal-gold.png"></image>
+        <image class="medal" wx:if="{{index === 1}}" src="/images/medal-silver.png"></image>
+        <image class="medal" wx:if="{{index === 2}}" src="/images/medal-bronze.png"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-header">
+          <text class="dept-name">{{item.department}}</text>
+          <text class="rank-badge" wx:if="{{index < 3}}">TOP{{index + 1}}</text>
+        </view>
+        <view class="item-stats">
+          <view class="stat">
+            <text class="stat-label">总步数</text>
+            <text class="stat-value">{{item.totalSteps}}</text>
+          </view>
+          <view class="stat">
+            <text class="stat-label">总里程</text>
+            <text class="stat-value">{{item.distance}} 公里</text>
+          </view>
+          <view class="stat">
+            <text class="stat-label">完成度</text>
+            <text class="stat-value">{{item.progress}}%</text>
+          </view>
+        </view>
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{item.progress}}%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{!loading && ranking.length === 0}}">
+    <text>暂无数据</text>
+  </view>
+</view>

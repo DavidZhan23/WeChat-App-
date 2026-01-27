@@ -1,0 +1,22 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <view class="logo-section">
+    <image class="logo" src="/images/longmarch-logo.png" mode="aspectFit"></image>
+    <text class="title">重走长征路</text>
+    <text class="subtitle">记录每一步，传承长征精神</text>
+  </view>
+
+  <view class="form-section">
+    <view class="form-item">
+      <text class="label">选择处室</text>
+      <picker mode="selector" range="{{departments}}" value="{{selectedDepartmentIndex}}" bindchange="onDepartmentChange">
+        <view class="picker">
+          {{selectedDepartment || '请选择处室'}}
+          <text class="arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <button class="btn-primary confirm-btn" bindtap="confirm">开始记录</button>
+  </view>
+</view>
