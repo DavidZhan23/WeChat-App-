@@ -6,6 +6,7 @@ Page({
   data: {
     departments: [],
     selectedDepartment: '',
+    selectedDepartmentIndex: 0,
     userInfo: null
   },
 
@@ -25,9 +26,12 @@ Page({
         if (userInfo && userInfo.department) {
           // 已有处室信息，跳转到首页
           app.globalData.userInfo = userInfo
-          wx.switchTab({
-            url: '/pages/index/index'
-          })
+          // 使用 setTimeout 确保页面已完全加载
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/index/index'
+            })
+          }, 200)
         } else {
           // 需要选择处室
           this.setData({ userInfo })
@@ -37,8 +41,10 @@ Page({
         this.login()
       })
     } else {
-      // 未登录
-      this.login()
+      // 未登录，延迟执行登录，确保页面已加载
+      setTimeout(() => {
+        this.login()
+      }, 100)
     }
   },
 
@@ -74,8 +80,10 @@ Page({
 
   // 选择处室
   onDepartmentChange(e) {
+    const selectedIndex = e.detail.value
+    const selectedDept = this.data.departments[selectedIndex]
     this.setData({
-      selectedDepartment: e.detail.value
+      selectedDepartment: selectedDept
     })
   },
 
@@ -98,10 +106,10 @@ Page({
       department: this.data.selectedDepartment
     }).then(() => {
       wx.hideLoading()
-      app.globalData.userInfo = {
-        ...this.data.userInfo,
+      // 使用 Object.assign 代替展开运算符，兼容小程序环境
+      app.globalData.userInfo = Object.assign({}, this.data.userInfo, {
         department: this.data.selectedDepartment
-      }
+      })
       wx.switchTab({
         url: '/pages/index/index'
       })

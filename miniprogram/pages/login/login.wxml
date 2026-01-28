@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="login-container">
   <view class="logo-section">
-    <image class="logo" src="/images/longmarch-logo.png" mode="aspectFit"></image>
+    <!-- <image class="logo" src="/images/longmarch-logo.png" mode="aspectFit"></image> -->
     <text class="title">重走长征路</text>
     <text class="subtitle">记录每一步，传承长征精神</text>
   </view>

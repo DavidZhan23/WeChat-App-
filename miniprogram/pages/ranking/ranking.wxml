@@ -10,9 +10,9 @@
     <view class="ranking-item {{index < 3 ? 'top-three' : ''}}" wx:for="{{ranking}}" wx:key="department">
       <view class="rank-number">
         <text class="rank-text" wx:if="{{index >= 3}}">{{index + 1}}</text>
-        <image class="medal" wx:if="{{index === 0}}" src="/images/medal-gold.png"></image>
-        <image class="medal" wx:if="{{index === 1}}" src="/images/medal-silver.png"></image>
-        <image class="medal" wx:if="{{index === 2}}" src="/images/medal-bronze.png"></image>
+        <view class="medal medal-gold" wx:if="{{index === 0}}">🥇</view>
+        <view class="medal medal-silver" wx:if="{{index === 1}}">🥈</view>
+        <view class="medal medal-bronze" wx:if="{{index === 2}}">🥉</view>
       </view>
       <view class="item-content">
         <view class="item-header">

@@ -20,6 +20,19 @@
   margin-right: 30rpx;
 }
 
+.avatar-placeholder {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-text {
+  color: #fff;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
 .user-details {
   display: flex;
   flex-direction: column;

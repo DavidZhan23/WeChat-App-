@@ -21,7 +21,10 @@ Page({
     this.setData({
       todayDate: util.getToday()
     })
-    this.checkAuth()
+    // 延迟检查，避免页面闪烁
+    setTimeout(() => {
+      this.checkAuth()
+    }, 100)
   },
 
   onShow() {
@@ -31,15 +34,43 @@ Page({
   // 检查授权
   checkAuth() {
     const openid = wx.getStorageSync('openid')
-    if (!openid || !app.globalData.userInfo) {
+    if (!openid) {
+      // 如果没有 openid，跳转到登录页
       wx.redirectTo({
         url: '/pages/login/login'
       })
       return
     }
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    
+    // 如果有 openid 但没有用户信息，尝试获取
+    if (!app.globalData.userInfo) {
+      const api = require('../../utils/api')
+      api.getUserInfo(openid).then(userInfo => {
+        if (userInfo) {
+          app.globalData.userInfo = userInfo
+          this.setData({
+            userInfo: userInfo
+          })
+          this.loadData()
+        } else {
+          // 用户不存在，跳转到登录页
+          wx.redirectTo({
+            url: '/pages/login/login'
+          })
+        }
+      }).catch(() => {
+        // 获取失败，跳转到登录页
+        wx.redirectTo({
+          url: '/pages/login/login'
+        })
+      })
+    } else {
+      // 已有用户信息，直接设置
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+      this.loadData()
+    }
   },
 
   // 加载数据

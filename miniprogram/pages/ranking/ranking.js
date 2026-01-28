@@ -29,11 +29,12 @@ Page({
     wx.showLoading({ title: '加载中...' })
     return api.getDepartmentRanking().then(ranking => {
       // 计算里程
-      const rankingWithDistance = ranking.map(item => ({
-        ...item,
-        distance: parseFloat(util.stepsToDistance(item.totalSteps)),
-        progress: util.distanceToPercent(parseFloat(util.stepsToDistance(item.totalSteps)))
-      }))
+      const rankingWithDistance = ranking.map(item => {
+        return Object.assign({}, item, {
+          distance: parseFloat(util.stepsToDistance(item.totalSteps)),
+          progress: util.distanceToPercent(parseFloat(util.stepsToDistance(item.totalSteps)))
+        })
+      })
       
       this.setData({
         ranking: rankingWithDistance,

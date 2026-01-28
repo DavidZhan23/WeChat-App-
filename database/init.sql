@@ -52,12 +52,14 @@ CREATE TABLE IF NOT EXISTS user_sessions (
   INDEX idx_openid (openid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户会话表';
 
--- 插入默认处室（可选）
+-- 插入处室
 INSERT INTO departments (name, description) VALUES
-('办公室', '办公室'),
-('人事处', '人事处'),
-('财务处', '财务处'),
-('业务处', '业务处'),
-('技术处', '技术处'),
-('后勤处', '后勤处')
+('业务一部', '业务一部'),
+('业务二部', '业务二部'),
+('业务三部', '业务三部'),
+('业务四部', '业务四部'),
+('业务五部', '业务五部'),
+('业务六部', '业务六部'),
+('业务七部', '业务七部'),
+('业务八部', '业务八部')
 ON DUPLICATE KEY UPDATE name=name;

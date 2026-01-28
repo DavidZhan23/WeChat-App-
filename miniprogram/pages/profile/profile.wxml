@@ -3,7 +3,10 @@
   <!-- 用户信息 -->
   <view class="user-section card">
     <view class="user-header">
-      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <image class="avatar" wx:if="{{userInfo.avatar}}" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      <view class="avatar avatar-placeholder" wx:else>
+        <text class="avatar-text">{{userInfo.nickname ? userInfo.nickname.charAt(0) : '用'}}</text>
+      </view>
       <view class="user-details">
         <text class="nickname">{{userInfo.nickname || '用户'}}</text>
         <text class="department">{{userInfo.department || ''}}</text>
